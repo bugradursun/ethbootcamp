@@ -23,6 +23,17 @@ beforeEach(async () => {
 describe('Inbox',() => {
     it('deploys a contract',() => {
         assert.ok(inbox.options.address) //inbox abi'da options objesinin altinda address methodu var,assert.ok ile bunu kontrol ediyoruz, ok mthodu is this defined value kontrol eder
+    })
+
+    it('it has a default message',async () => {
+        const message = await inbox.methods.message().call() //call:just retrieve data 
+        assert.equal(message,'Hi there!')
+    })
+    it('sets a new message',async() => {
+        await inbox.methods.setMessage('bye').send({from:accounts[0]}) //send : modify some data inside contract,with this tx we just get a tx hash in return.
+        const message = await inbox.methods.message().call()
+        assert.equal(message,'bye')  
 
     })
 })
+ 
