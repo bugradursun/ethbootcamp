@@ -17,7 +17,7 @@ contract Lottery {
 
     function random() private view returns(uint256) {
         //to create randomnese we will take players addresses,current block time and block difficulty and put it into sha3
-        return uint(keccak256(abi.encodePacked(block.prevrandao,block.timestamp, players)));
+        return uint(keccak256(abi.encodePacked(block.difficulty,block.timestamp, players)));
     }
     //random fnc will create a very huge number, we will take this number and do % random, with the result we will index the array
     function pickWinner() public restricted() {
