@@ -20,7 +20,7 @@ contract Lottery {
         return uint(keccak256(abi.encodePacked(block.prevrandao,block.timestamp, players)));
     }
     //random fnc will create a very huge number, we will take this number and do % random, with the result we will index the array
-    function pickWinner() public {
+    function pickWinner() public restricted() {
         uint index = random() % players.length;
         players[index].transfer(address(this).balance);
         players = new address payable[](0); //to infinitely run lottery contract we reset the players array
