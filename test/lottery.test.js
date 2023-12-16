@@ -81,7 +81,7 @@ describe('Lottery Contract', () => {
             from:deployer,
             value:web3.utils.toWei('2','ether'),
         })
-        const initialBalance = await web3.eth.getBalance(accounts[0])
+        const initialBalance = await web3.eth.getBalance(deployer)
         await lottery.methods.pickWinner().send({from:deployer})
         const finalBalance = await web3.eth.getBalance(deployer)
         const difference = finalBalance - initialBalance
@@ -89,3 +89,5 @@ describe('Lottery Contract', () => {
 
     })
 })
+
+//0x3738de1b59d10a91c08f0d95ea8ea36e9058c77e
