@@ -69,7 +69,7 @@ describe('Lottery Contract', () => {
     it('only manager can call pickwinner',async () => {
         try {
             await lottery.methods.pickWinner().send({
-                from:deployer,
+                from:accounts[1],
             })
             assert(false)
         } catch (err) {
@@ -91,3 +91,13 @@ describe('Lottery Contract', () => {
 })
 
 //0x3738de1b59d10a91c08f0d95ea8ea36e9058c77e
+
+//pattern:
+//try {
+    //managerdan baskasi fnc cagirsin
+    //assert(false) managerdan baskasi fnc cagirsin : true => assert(false) returning
+
+ // catch {
+    //try condition false ise return error
+ //}
+//}
