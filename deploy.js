@@ -11,14 +11,82 @@ const web3 = new Web3(provider);
 const deploy = async () => {
     const accounts = await web3.eth.getAccounts()
     console.log('Attempting to deploy from account',accounts[0])
-    
-    const result = await new web3.eth.Contract(abi)
+    const abi1 = [
+        {
+            "inputs": [],
+            "stateMutability": "nonpayable",
+            "type": "constructor"
+        },
+        {
+            "inputs": [],
+            "name": "enter",
+            "outputs": [],
+            "stateMutability": "payable",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "getPlayers",
+            "outputs": [
+                {
+                    "internalType": "address payable[]",
+                    "name": "",
+                    "type": "address[]"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "manager",
+            "outputs": [
+                {
+                    "internalType": "address",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "pickWinner",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "name": "players",
+            "outputs": [
+                {
+                    "internalType": "address payable",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        }
+    ]
+    const result = await new web3.eth.Contract(abi1)
     .deploy({data:evm.bytecode.object}) //pass bytecode as evm.bytecode.object
     .send({gas:'1000000',from:accounts[0]})
 
+    console.log(JSON.stringify(abi1))
     console.log('contract deployed to:',result.options.address)
+    
     provider.engine.stop() //to prevent hanging deployment
     //contract deployed to 0x8D13c25fB21Eb8b45eF2483588d7a94dC11fF3D0
+    //guncel adress 0x896FC5314A80EE1C8fE1e2A098E65bA55D029367
 }
 
 deploy()

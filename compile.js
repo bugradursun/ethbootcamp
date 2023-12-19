@@ -23,7 +23,7 @@ const input = {
       },
     },
   };
-console.log( JSON.parse(solc.compile(JSON.stringify(input))).contracts[  'Lottery.sol'].Lottery)
+//console.log( JSON.parse(solc.compile(JSON.stringify(input))).contracts[  'Lottery.sol'].Lottery)
 
   module.exports = JSON.parse(solc.compile(JSON.stringify(input))).contracts[
     'Lottery.sol'
