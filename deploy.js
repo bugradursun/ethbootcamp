@@ -85,7 +85,6 @@ const deploy = async () => {
     console.log('contract deployed to:',result.options.address)
     
     provider.engine.stop() //to prevent hanging deployment
-    //contract deployed to 0x8D13c25fB21Eb8b45eF2483588d7a94dC11fF3D0
     //guncel adress 0x896FC5314A80EE1C8fE1e2A098E65bA55D029367
 }
 
